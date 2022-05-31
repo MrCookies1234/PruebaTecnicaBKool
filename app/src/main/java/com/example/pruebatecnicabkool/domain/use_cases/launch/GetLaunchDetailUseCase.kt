@@ -1,4 +1,4 @@
-package com.example.pruebatecnicabkool.domain.use_cases
+package com.example.pruebatecnicabkool.domain.use_cases.launch
 
 import com.example.pruebatecnicabkool.core.Resource
 import com.example.pruebatecnicabkool.data.model.launch.Launch

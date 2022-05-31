@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">PruebaTecnicaBKool</string>
+    <string name="date_launched">Date launched: </string>
+    <string name="rocket_name">Rocket: </string>
 </resources>

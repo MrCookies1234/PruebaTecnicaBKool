@@ -21,7 +21,7 @@ data class Launch(
     val payloads: List<String>,
     val rocket: String,
     val ships: List<String>,
-    val static_fire_date_unix: Int,
+    val static_fire_date_unix: Long,
     val static_fire_date_utc: String,
     val success: Boolean,
     val tdb: Boolean,

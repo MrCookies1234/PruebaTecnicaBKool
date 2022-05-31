@@ -55,4 +55,14 @@ dependencies {
     //Hilt
     implementation 'com.google.dagger:hilt-android:2.41'
     kapt 'com.google.dagger:hilt-compiler:2.41'
+
+    //Navigation
+    implementation("androidx.navigation:navigation-fragment-ktx:2.4.2")
+    implementation("androidx.navigation:navigation-ui-ktx:2.4.2")
+
+    //Glide
+    implementation "com.github.bumptech.glide:glide:4.11.0"
+
+    //Timber
+    implementation 'com.jakewharton.timber:timber:5.0.1'
 }

@@ -2,16 +2,20 @@ package com.example.pruebatecnicabkool.di
 
 import com.example.pruebatecnicabkool.core.Constants
 import com.example.pruebatecnicabkool.data.data_source.spacexapi.SpaceXAPI
-import com.example.pruebatecnicabkool.domain.use_cases.GetAllLaunchesUseCase
-import com.example.pruebatecnicabkool.domain.use_cases.GetLatestLaunchUseCase
-import com.example.pruebatecnicabkool.domain.use_cases.GetLaunchDetailUseCase
-import com.example.pruebatecnicabkool.domain.use_cases.LaunchUseCases
+import com.example.pruebatecnicabkool.domain.use_cases.launch.GetAllLaunchesUseCase
+import com.example.pruebatecnicabkool.domain.use_cases.launch.GetLatestLaunchUseCase
+import com.example.pruebatecnicabkool.domain.use_cases.launch.GetLaunchDetailUseCase
+import com.example.pruebatecnicabkool.domain.use_cases.launch.LaunchUseCases
+import com.example.pruebatecnicabkool.domain.use_cases.rocket.GetAllRocketsUseCase
+import com.example.pruebatecnicabkool.domain.use_cases.rocket.GetRocketDetailUseCase
+import com.example.pruebatecnicabkool.domain.use_cases.rocket.RocketUseCases
 import com.example.pruebatecnicabkool.repository.SpaceXRepository
 import com.example.pruebatecnicabkool.repository.SpaceXRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import org.intellij.lang.annotations.PrintFormat
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
@@ -43,6 +47,15 @@ object AppModule {
             getAllLaunchesUseCase = GetAllLaunchesUseCase(repo),
             getLatestLaunchUseCase = GetLatestLaunchUseCase(repo),
             getLaunchDetailUseCase = GetLaunchDetailUseCase(repo)
+        )
+    }
+
+    @Provides
+    @Singleton
+    fun provideRocketUseCases(repo : SpaceXRepository) : RocketUseCases{
+        return RocketUseCases(
+            getRocketDetailUseCase = GetRocketDetailUseCase(repo),
+            getAllRocketsUseCase = GetAllRocketsUseCase(repo)
         )
     }
 }
