@@ -3,6 +3,7 @@ package com.example.pruebatecnicabkool.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -10,6 +11,7 @@ import com.bumptech.glide.Glide
 import com.example.pruebatecnicabkool.R
 import com.example.pruebatecnicabkool.data.model.launch.LaunchListEntry
 import com.example.pruebatecnicabkool.databinding.ItemLaunchBinding
+import com.example.pruebatecnicabkool.ui.fragment.MainFragmentDirections
 
 class LaunchAdapter : RecyclerView.Adapter<LaunchAdapter.LaunchViewHolder>() {
 
@@ -53,6 +55,9 @@ class LaunchAdapter : RecyclerView.Adapter<LaunchAdapter.LaunchViewHolder>() {
                 Glide.with(this).load(ContextCompat.getDrawable(this.context,R.drawable.ic_baseline_check_24)).into(binding!!.imvStatus)
             }else{
                 Glide.with(this).load(ContextCompat.getDrawable(this.context,R.drawable.ic_baseline_close_24)).into(binding!!.imvStatus)
+            }
+            setOnClickListener {
+                it.findNavController().navigate(MainFragmentDirections.actionMainFragmentToLaunchDetailFragment(currentLaunch.id))
             }
         }
     }
