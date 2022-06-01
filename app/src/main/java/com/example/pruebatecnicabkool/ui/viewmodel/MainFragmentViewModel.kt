@@ -33,12 +33,9 @@ class MainFragmentViewModel @Inject constructor(
 
     private fun loadAllLaunchList() {
         viewModelScope.launch {
-            val resultLaunches = launchUseCases.getAllLaunchesUseCase.invoke()
-            val entries: List<LaunchListEntry>
-
-            when (resultLaunches) {
+            when (val resultLaunches = launchUseCases.getAllLaunchesUseCase.invoke()) {
                 is Resource.Success -> {
-                    entries = resultLaunches.data!!.map {
+                    val entries = resultLaunches.data!!.map {
                         LaunchListEntry(
                             it.id,
                             getRocketFromId(it.rocket),

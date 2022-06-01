@@ -38,7 +38,6 @@ class LaunchAdapter : RecyclerView.Adapter<LaunchAdapter.LaunchViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LaunchViewHolder {
         _binding = ItemLaunchBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-
         return LaunchViewHolder(_binding)
     }
 

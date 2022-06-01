@@ -7,7 +7,7 @@ data class Launch(
     val crew: List<String>,
     val date_local: String,
     val date_precision: String,
-    val date_unix: Int,
+    val date_unix: Long,
     val date_utc: String,
     val details: String,
     val failures: List<Any>,

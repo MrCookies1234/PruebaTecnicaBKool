@@ -7,7 +7,9 @@
         <entry key="..\:/Users/Marcos/AndroidStudioProjects/PruebaTecnicaBKool/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />
         <entry key="..\:/Users/Marcos/AndroidStudioProjects/PruebaTecnicaBKool/app/src/main/res/layout/fragment_launch_detail.xml" value="0.365625" />
         <entry key="..\:/Users/Marcos/AndroidStudioProjects/PruebaTecnicaBKool/app/src/main/res/layout/fragment_main.xml" value="0.27049180327868855" />
+        <entry key="..\:/Users/Marcos/AndroidStudioProjects/PruebaTecnicaBKool/app/src/main/res/layout/item_crew.xml" value="0.275" />
         <entry key="..\:/Users/Marcos/AndroidStudioProjects/PruebaTecnicaBKool/app/src/main/res/layout/item_launch.xml" value="0.30085470085470084" />
+        <entry key="..\:/Users/Marcos/AndroidStudioProjects/PruebaTecnicaBKool/app/src/main/res/layout/item_ship.xml" value="0.275" />
       </map>
     </option>
   </component>
