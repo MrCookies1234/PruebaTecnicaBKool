@@ -24,10 +24,7 @@ class MainFragmentViewModel @Inject constructor(
     private val _launchEntries = MutableStateFlow(emptyList<LaunchListEntry>())
     val launchEntries get() = _launchEntries.asStateFlow()
 
-    private val cachedRocketList = arrayListOf<Rocket>()
-
     init {
-        loadAllRocketList()
         loadAllLaunchList()
     }
 
@@ -38,9 +35,9 @@ class MainFragmentViewModel @Inject constructor(
                     val entries = resultLaunches.data!!.map {
                         LaunchListEntry(
                             it.id,
-                            getRocketFromId(it.rocket),
                             TimeUtil.getLaunchDateFromTimeStamp(it.static_fire_date_unix),
-                            it.success
+                            it.success,
+                            it.name
                         )
                     }
                     _launchEntries.value = entries
@@ -54,31 +51,6 @@ class MainFragmentViewModel @Inject constructor(
             }
 
         }
-    }
-
-    private fun loadAllRocketList(){
-        viewModelScope.launch {
-            when (val resultRockets = rocketUseCases.getAllRocketsUseCase.invoke()) {
-                is Resource.Success -> {
-                    resultRockets.data!!.forEach {
-                        cachedRocketList.add(it)
-                    }
-                }
-                is Resource.Error -> {
-                    Timber.e(resultRockets.message)
-                }
-                is Resource.Loading -> {
-                    Timber.d("Loading")
-                }
-            }
-
-        }
-    }
-
-    private fun getRocketFromId(id: String): String {
-        return cachedRocketList.find {
-            it.id == id
-        }!!.name
     }
 
 }

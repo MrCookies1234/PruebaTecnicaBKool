@@ -47,16 +47,15 @@ class LaunchAdapter : RecyclerView.Adapter<LaunchAdapter.LaunchViewHolder>() {
             val launchDateText = "${resources.getText(R.string.date_launched)} ${currentLaunch.launchDate}"
             binding!!.txvLaunchDate.text = launchDateText
 
-            val rocketNameText = "${resources.getText(R.string.rocket_name)} ${currentLaunch.rocketName}"
-            binding!!.txvRocketName.text = rocketNameText
+            binding!!.txvLaunchName.text = currentLaunch.name
 
-            if (currentLaunch.success){
+            if (currentLaunch.success!!){
                 Glide.with(this).load(ContextCompat.getDrawable(this.context,R.drawable.ic_baseline_check_24)).into(binding!!.imvStatus)
             }else{
                 Glide.with(this).load(ContextCompat.getDrawable(this.context,R.drawable.ic_baseline_close_24)).into(binding!!.imvStatus)
             }
             setOnClickListener {
-                it.findNavController().navigate(MainFragmentDirections.actionMainFragmentToLaunchDetailFragment(currentLaunch.id))
+                it.findNavController().navigate(MainFragmentDirections.actionMainFragmentToLaunchDetailFragment(currentLaunch.id!!))
             }
         }
     }

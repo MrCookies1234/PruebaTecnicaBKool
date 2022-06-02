@@ -7,10 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.pruebatecnicabkool.adapter.CrewAdapter
-import com.example.pruebatecnicabkool.adapter.ShipAdapter
+import com.bumptech.glide.Glide
 import com.example.pruebatecnicabkool.databinding.FragmentLaunchDetailBinding
 import com.example.pruebatecnicabkool.ui.viewmodel.FragmentDetailViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -25,12 +22,9 @@ class LaunchDetailFragment : Fragment() {
 
     private val fragmentDetailViewModel: FragmentDetailViewModel by viewModels()
 
-    private lateinit var crewAdapter: CrewAdapter
-    private lateinit var shipAdapter: ShipAdapter
-
     override fun onCreateView(inflater: LayoutInflater,container: ViewGroup?,savedInstanceState: Bundle?): View? {
         _binding = FragmentLaunchDetailBinding.inflate(layoutInflater)
-        setUpRecyclerView()
+
         subscribeToObservables()
         return binding.root
     }
@@ -43,24 +37,11 @@ class LaunchDetailFragment : Fragment() {
     private fun subscribeToObservables() {
         lifecycleScope.launch {
             fragmentDetailViewModel.launchDetail.collectLatest {
-                crewAdapter.submitList(it.crew)
-                shipAdapter.submitList(it.ships)
+                binding.txvLaunchDetailName.text = it.name
+                Glide.with(requireContext()).load(it.img).into(binding.imvLaunchDetailImg)
             }
         }
     }
 
-    private fun setUpRecyclerView(){
-        binding.rcvCrew.apply {
-            crewAdapter = CrewAdapter()
-            adapter = crewAdapter
-            layoutManager = LinearLayoutManager(requireContext())
-        }
-
-        binding.rcvShips.apply {
-            shipAdapter = ShipAdapter()
-            adapter = shipAdapter
-            layoutManager = LinearLayoutManager(requireContext())
-        }
-    }
 
 }

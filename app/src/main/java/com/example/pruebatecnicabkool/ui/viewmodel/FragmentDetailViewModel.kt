@@ -6,9 +6,11 @@ import androidx.lifecycle.viewModelScope
 import com.example.pruebatecnicabkool.core.Resource
 import com.example.pruebatecnicabkool.data.model.crew.Crew
 import com.example.pruebatecnicabkool.data.model.launch.LaunchDetailEntry
+import com.example.pruebatecnicabkool.data.model.rocket.Rocket
 import com.example.pruebatecnicabkool.data.model.ship.Ship
 import com.example.pruebatecnicabkool.domain.use_cases.crew.CrewUseCases
 import com.example.pruebatecnicabkool.domain.use_cases.launch.LaunchUseCases
+import com.example.pruebatecnicabkool.domain.use_cases.rocket.RocketUseCases
 import com.example.pruebatecnicabkool.domain.use_cases.ship.ShipUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -20,20 +22,16 @@ import javax.inject.Inject
 @HiltViewModel
 class FragmentDetailViewModel @Inject constructor(
     private val launchUseCases: LaunchUseCases,
-    private val crewUseCases: CrewUseCases,
-    private val shipUseCases: ShipUseCases,
+    private val rocketUseCases : RocketUseCases,
     state : SavedStateHandle
 ) : ViewModel() {
 
     private val _launchDetail = MutableStateFlow(LaunchDetailEntry())
     val launchDetail get() = _launchDetail.asStateFlow()
 
-    private val cachedShipList = arrayListOf<Ship>()
-    private val cachedCrewList = arrayListOf<Crew>()
+    private val cachedRocketList = arrayListOf<Rocket>()
 
     init {
-        loadAllShipList()
-        loadAllCrewList()
         state.get<String>("launchId")?.let { getLaunchDetailInfo(it) }
     }
 
@@ -45,12 +43,13 @@ class FragmentDetailViewModel @Inject constructor(
                         id = resultLaunches.data!!.id,
                         date_unix = resultLaunches.data.date_unix,
                         failures = resultLaunches.data.failures,
-                        youtube_link = resultLaunches.data.links.youtube_id,
-                        ships = getShips(resultLaunches.data.ships),
+                        youtube_link = resultLaunches.data.links.webcast,
                         static_fire_date_unix = resultLaunches.data.static_fire_date_unix,
                         success = resultLaunches.data.success,
                         upcoming = resultLaunches.data.upcoming,
-                        crew = getCrew(resultLaunches.data.crew)
+                        img = resultLaunches.data.links.patch.small,
+                        details = resultLaunches.data.details,
+                        name = resultLaunches.data.name
                     )
                     _launchDetail.value = entry
                 }
@@ -64,36 +63,16 @@ class FragmentDetailViewModel @Inject constructor(
         }
     }
 
-    private fun getShips(ids : List<String>) : ArrayList<Ship>{
-        val listOfShips = arrayListOf<Ship>()
-        for (id in ids){
-            listOfShips.add(cachedShipList.find {
-                it.id == id
-            }!!)
-        }
-        return listOfShips
-    }
-
-    private fun getCrew(ids : List<String>) : ArrayList<Crew>{
-        val listOfCrew = arrayListOf<Crew>()
-        for (id in ids){
-            listOfCrew.add(cachedCrewList.find {
-                it.id == id
-            }!!)
-        }
-        return listOfCrew
-    }
-
-    private fun loadAllCrewList(){
+    private fun loadAllRocketList(){
         viewModelScope.launch {
-            when (val resultCrew = crewUseCases.getAllCrewUseCase.invoke()) {
+            when (val resultRockets = rocketUseCases.getAllRocketsUseCase.invoke()) {
                 is Resource.Success -> {
-                    resultCrew.data!!.forEach{
-                        cachedCrewList.add(it)
+                    resultRockets.data!!.forEach {
+                        cachedRocketList.add(it)
                     }
                 }
                 is Resource.Error -> {
-                    Timber.e(resultCrew.message)
+                    Timber.e(resultRockets.message)
                 }
                 is Resource.Loading -> {
                     Timber.d("Loading")
@@ -103,24 +82,10 @@ class FragmentDetailViewModel @Inject constructor(
         }
     }
 
-    private fun loadAllShipList(){
-        viewModelScope.launch {
-            when (val resultShip = shipUseCases.getAllShipsUseCase.invoke()) {
-                is Resource.Success -> {
-                    resultShip.data!!.forEach {
-                       cachedShipList.add(it)
-                    }
-                }
-                is Resource.Error -> {
-                    Timber.e(resultShip.message)
-                }
-                is Resource.Loading -> {
-                    Timber.d("Loading")
-                }
-            }
-
-        }
-
+    private fun getRocketFromId(id: String): String {
+        return cachedRocketList.find {
+            it.id == id
+        }!!.name
     }
 
 }
