@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.pruebatecnicabkool.databinding.FragmentLaunchDetailBinding
 import com.example.pruebatecnicabkool.ui.viewmodel.FragmentDetailViewModel
@@ -41,7 +42,13 @@ class LaunchDetailFragment : Fragment() {
                 Glide.with(requireContext()).load(it.img).into(binding.imvLaunchDetailImg)
             }
         }
+        lifecycleScope.launch {
+            fragmentDetailViewModel.youtubeIdState.collectLatest { youtubeId ->
+                binding.btnPlay.setOnClickListener {
+                    findNavController().navigate(LaunchDetailFragmentDirections.actionLaunchDetailFragmentToYoutubeFragment(youtubeId))
+                }
+            }
+        }
     }
-
 
 }

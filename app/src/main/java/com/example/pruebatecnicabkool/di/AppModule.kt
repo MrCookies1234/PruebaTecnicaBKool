@@ -21,7 +21,6 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import org.intellij.lang.annotations.PrintFormat
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
@@ -58,7 +57,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideRocketUseCases(repo : SpaceXRepository) : RocketUseCases{
+    fun provideRocketUseCases(repo: SpaceXRepository): RocketUseCases {
         return RocketUseCases(
             getRocketDetailUseCase = GetRocketDetailUseCase(repo),
             getAllRocketsUseCase = GetAllRocketsUseCase(repo)
@@ -67,7 +66,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideCrewUseCases(repo: SpaceXRepository) : CrewUseCases{
+    fun provideCrewUseCases(repo: SpaceXRepository): CrewUseCases {
         return CrewUseCases(
             getCrewDetailUseCase = GetCrewDetailUseCase(repo),
             getAllCrewUseCase = GetAllCrewUseCase(repo)
@@ -76,7 +75,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideShipUseCases(repo: SpaceXRepository) : ShipUseCases {
+    fun provideShipUseCases(repo: SpaceXRepository): ShipUseCases {
         return ShipUseCases(
             getShipDetailUseCase = GetShipDetailUseCase(repo),
             getAllShipsUseCase = GetAllShipsUseCase(repo)

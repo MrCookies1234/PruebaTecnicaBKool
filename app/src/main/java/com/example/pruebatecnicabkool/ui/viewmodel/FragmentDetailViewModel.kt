@@ -4,14 +4,10 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.pruebatecnicabkool.core.Resource
-import com.example.pruebatecnicabkool.data.model.crew.Crew
 import com.example.pruebatecnicabkool.data.model.launch.LaunchDetailEntry
 import com.example.pruebatecnicabkool.data.model.rocket.Rocket
-import com.example.pruebatecnicabkool.data.model.ship.Ship
-import com.example.pruebatecnicabkool.domain.use_cases.crew.CrewUseCases
 import com.example.pruebatecnicabkool.domain.use_cases.launch.LaunchUseCases
 import com.example.pruebatecnicabkool.domain.use_cases.rocket.RocketUseCases
-import com.example.pruebatecnicabkool.domain.use_cases.ship.ShipUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -29,6 +25,9 @@ class FragmentDetailViewModel @Inject constructor(
     private val _launchDetail = MutableStateFlow(LaunchDetailEntry())
     val launchDetail get() = _launchDetail.asStateFlow()
 
+    private val _youtubeIdState = MutableStateFlow("")
+    val youtubeIdState get() = _youtubeIdState.asStateFlow()
+
     private val cachedRocketList = arrayListOf<Rocket>()
 
     init {
@@ -43,7 +42,6 @@ class FragmentDetailViewModel @Inject constructor(
                         id = resultLaunches.data!!.id,
                         date_unix = resultLaunches.data.date_unix,
                         failures = resultLaunches.data.failures,
-                        youtube_link = resultLaunches.data.links.webcast,
                         static_fire_date_unix = resultLaunches.data.static_fire_date_unix,
                         success = resultLaunches.data.success,
                         upcoming = resultLaunches.data.upcoming,
@@ -52,6 +50,7 @@ class FragmentDetailViewModel @Inject constructor(
                         name = resultLaunches.data.name
                     )
                     _launchDetail.value = entry
+                    _youtubeIdState.value = resultLaunches.data.links.youtube_id
                 }
                 is Resource.Error -> {
                     Timber.e(resultLaunches.message)

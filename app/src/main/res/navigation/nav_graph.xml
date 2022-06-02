@@ -21,5 +21,16 @@
         <argument
             android:name="launchId"
             app:argType="string"/>
+        <action
+            android:id="@+id/action_launchDetailFragment_to_youtubeFragment"
+            app:destination="@id/youtubeFragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/youtubeFragment"
+        android:name="com.example.pruebatecnicabkool.ui.fragment.YoutubeFragment"
+        android:label="YoutubeFragment">
+    <argument
+        android:name="youtubeId"
+        app:argType="string"/>
     </fragment>
 </navigation>

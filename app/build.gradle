@@ -6,6 +6,9 @@ plugins {
     id("androidx.navigation.safeargs.kotlin")
 }
 
+    def localProperties = new Properties()
+    localProperties.load(new FileInputStream((rootProject.file("local.properties"))))
+
 android {
     compileSdk 32
 
@@ -66,4 +69,8 @@ dependencies {
 
     //Timber
     implementation 'com.jakewharton.timber:timber:5.0.1'
+
+    //Youtube
+    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:11.0.1'
+
 }
