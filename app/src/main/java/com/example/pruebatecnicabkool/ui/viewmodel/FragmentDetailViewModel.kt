@@ -4,6 +4,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.pruebatecnicabkool.core.Resource
+import com.example.pruebatecnicabkool.core.TimeUtil
 import com.example.pruebatecnicabkool.data.model.launch.LaunchDetailEntry
 import com.example.pruebatecnicabkool.data.model.rocket.Rocket
 import com.example.pruebatecnicabkool.domain.use_cases.launch.LaunchUseCases
@@ -42,7 +43,7 @@ class FragmentDetailViewModel @Inject constructor(
                         id = resultLaunches.data!!.id,
                         date_unix = resultLaunches.data.date_unix,
                         failures = resultLaunches.data.failures,
-                        static_fire_date_unix = resultLaunches.data.static_fire_date_unix,
+                        static_fire_date_unix = TimeUtil.getLaunchDateFromTimeStamp(resultLaunches.data.static_fire_date_unix),
                         success = resultLaunches.data.success,
                         upcoming = resultLaunches.data.upcoming,
                         img = resultLaunches.data.links.patch.small,
