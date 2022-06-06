@@ -6,9 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.pruebatecnicabkool.core.Resource
 import com.example.pruebatecnicabkool.core.TimeUtil
 import com.example.pruebatecnicabkool.data.model.launch.LaunchDetailEntry
-import com.example.pruebatecnicabkool.data.model.rocket.Rocket
 import com.example.pruebatecnicabkool.domain.use_cases.launch.LaunchUseCases
-import com.example.pruebatecnicabkool.domain.use_cases.rocket.RocketUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

@@ -4,6 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Marcos/AndroidStudioProjects/PruebaTecnicaBKool/app/src/main/res/drawable/ic_baseline_close_24.xml" value="0.197" />
+        <entry key="..\:/Users/Marcos/AndroidStudioProjects/PruebaTecnicaBKool/app/src/main/res/layout-land/fragment_launch_detail.xml" value="0.30979699911738745" />
+        <entry key="..\:/Users/Marcos/AndroidStudioProjects/PruebaTecnicaBKool/app/src/main/res/layout-sw600dp-land/fragment_list.xml" value="0.14343928280358598" />
         <entry key="..\:/Users/Marcos/AndroidStudioProjects/PruebaTecnicaBKool/app/src/main/res/layout-sw600dp/fragment_item_detail.xml" value="0.17801155115511552" />
         <entry key="..\:/Users/Marcos/AndroidStudioProjects/PruebaTecnicaBKool/app/src/main/res/layout-sw600dp/fragment_item_list.xml" value="0.17801155115511552" />
         <entry key="..\:/Users/Marcos/AndroidStudioProjects/PruebaTecnicaBKool/app/src/main/res/layout-sw600dp/fragment_list.xml" value="0.1" />

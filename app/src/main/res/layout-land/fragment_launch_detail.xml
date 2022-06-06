@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:id="@+id/gdlV30"
-        app:layout_constraintGuide_percent="0.30"/>
+        app:layout_constraintGuide_percent="0.40"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:layout_width="0dp"
@@ -46,34 +46,34 @@
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.95"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/txvLaunchDetailDate"
-            android:text="@string/date_launched"
-            app:layout_constraintTop_toBottomOf="@id/imvLaunchDetailImg"
-            app:layout_constraintStart_toStartOf="@id/gdl10"
-            android:textStyle="bold"
-            android:layout_marginTop="10dp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txvLaunchDetailDate"
+        android:text="@string/date_launched"
+        app:layout_constraintTop_toBottomOf="@id/imvLaunchDetailImg"
+        app:layout_constraintStart_toStartOf="@id/gdl10"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/txvLaunchDetailSuccess"
-            android:text="@string/success"
-            app:layout_constraintTop_toBottomOf="@id/imvLaunchDetailImg"
-            app:layout_constraintEnd_toStartOf="@id/imvLaunchDetailSuccess"
-            android:textStyle="bold"
-            android:layout_marginTop="10dp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txvLaunchDetailSuccess"
+        android:text="@string/success"
+        app:layout_constraintTop_toBottomOf="@id/imvLaunchDetailImg"
+        app:layout_constraintEnd_toStartOf="@id/imvLaunchDetailSuccess"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp" />
 
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:id="@+id/imvLaunchDetailSuccess"
-            app:layout_constraintTop_toBottomOf="@id/imvLaunchDetailImg"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            app:layout_constraintEnd_toStartOf="@id/gdl90"/>
+    <ImageView
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:id="@+id/imvLaunchDetailSuccess"
+        app:layout_constraintTop_toBottomOf="@id/imvLaunchDetailImg"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toStartOf="@id/gdl90"/>
 
     <TextView
         android:layout_width="0dp"
