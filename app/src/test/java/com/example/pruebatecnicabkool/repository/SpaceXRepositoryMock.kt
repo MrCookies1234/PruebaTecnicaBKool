@@ -8,7 +8,7 @@ class SpaceXRepositoryMock(list : List<Launch>) : SpaceXRepository {
     private val listOfLaunches = list
 
     override suspend fun getLatestLaunch(): Resource<Launch> {
-        return Resource.Success(listOfLaunches.last())
+        return if(listOfLaunches.isNotEmpty()) Resource.Success(listOfLaunches.last()) else Resource.Error(null, "The list is empty")
     }
 
     override suspend fun getLaunchDetail(id: String): Resource<Launch> {
@@ -17,7 +17,7 @@ class SpaceXRepositoryMock(list : List<Launch>) : SpaceXRepository {
     }
 
     override suspend fun getLaunchList(): Resource<List<Launch>> {
-        return Resource.Success(listOfLaunches)
+        return if(listOfLaunches.isNotEmpty()) Resource.Success(listOfLaunches) else Resource.Error(null, "The list is empty")
     }
 
 }

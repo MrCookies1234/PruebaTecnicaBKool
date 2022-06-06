@@ -61,7 +61,6 @@ class SpaceXRepositoryImplTest {
         }
 
         assertNotNull(element.data)
-
     }
 
     @Test
@@ -72,6 +71,17 @@ class SpaceXRepositoryImplTest {
         }
 
         assertNull(element.data)
+    }
+
+    @Test
+    fun `empty list returns error`() {
+        var list : Resource<List<Launch>>
+
+        runBlocking {
+            list = mock.getLaunchList()
+        }
+
+        assertNull(list.data)
     }
 
 }
