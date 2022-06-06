@@ -1,5 +1,6 @@
 package com.example.pruebatecnicabkool.adapter
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -10,10 +11,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.pruebatecnicabkool.R
 import com.example.pruebatecnicabkool.data.model.launch.LaunchListEntry
+import com.example.pruebatecnicabkool.databinding.FragmentListBinding
 import com.example.pruebatecnicabkool.databinding.ItemLaunchBinding
-import com.example.pruebatecnicabkool.ui.fragment.MainFragmentDirections
+import com.example.pruebatecnicabkool.ui.fragment.ListFragmentDirections
 
-class LaunchAdapter : RecyclerView.Adapter<LaunchAdapter.LaunchViewHolder>() {
+class LaunchAdapter(private val listBinding: FragmentListBinding) : RecyclerView.Adapter<LaunchAdapter.LaunchViewHolder>() {
 
     private var _binding : ItemLaunchBinding? = null
     private val binding get() = _binding
@@ -55,7 +57,13 @@ class LaunchAdapter : RecyclerView.Adapter<LaunchAdapter.LaunchViewHolder>() {
                 Glide.with(this).load(ContextCompat.getDrawable(this.context,R.drawable.ic_baseline_close_24)).into(binding!!.imvStatus)
             }
             setOnClickListener {
-                it.findNavController().navigate(MainFragmentDirections.actionMainFragmentToLaunchDetailFragment(currentLaunch.id!!))
+                if(listBinding.itemDetailNavContainer != null){
+                    val bundle = Bundle()
+                    bundle.putString("launchId",currentLaunch.id)
+                    listBinding.itemListContainer.findNavController().navigate(R.id.launchDetailFragment, bundle)
+                }else{
+                    it.findNavController().navigate(ListFragmentDirections.actionListFragmentToLaunchDetailFragment(currentLaunch.id!!))
+                }
             }
         }
     }

@@ -5,7 +5,10 @@
     <string name="crew">Crew </string>
     <string name="ships">Ships </string>
     <string name="video">Watch Launch</string>
-    <string name="date_not_launched">This is an upcoming launch</string>
+    <string name="date_not_launched">Upcoming</string>
     <string name="success"> Success status: </string>
     <string name="details_not_available">Launch info not available</string>
+    <string name="title_activity_item_detail_host">ItemDetailHostActivity</string>
+    <string name="title_item_list">Items</string>
+    <string name="title_item_detail">Item Detail</string>
 </resources>

@@ -19,7 +19,6 @@ import javax.inject.Inject
 @HiltViewModel
 class FragmentDetailViewModel @Inject constructor(
     private val launchUseCases: LaunchUseCases,
-    private val rocketUseCases : RocketUseCases,
     state : SavedStateHandle
 ) : ViewModel() {
 
@@ -28,8 +27,6 @@ class FragmentDetailViewModel @Inject constructor(
 
     private val _youtubeIdState = MutableStateFlow("")
     val youtubeIdState get() = _youtubeIdState.asStateFlow()
-
-    private val cachedRocketList = arrayListOf<Rocket>()
 
     init {
         state.get<String>("launchId")?.let { getLaunchDetailInfo(it) }
@@ -61,31 +58,6 @@ class FragmentDetailViewModel @Inject constructor(
                 }
             }
         }
-    }
-
-    private fun loadAllRocketList(){
-        viewModelScope.launch {
-            when (val resultRockets = rocketUseCases.getAllRocketsUseCase.invoke()) {
-                is Resource.Success -> {
-                    resultRockets.data!!.forEach {
-                        cachedRocketList.add(it)
-                    }
-                }
-                is Resource.Error -> {
-                    Timber.e(resultRockets.message)
-                }
-                is Resource.Loading -> {
-                    Timber.d("Loading")
-                }
-            }
-
-        }
-    }
-
-    private fun getRocketFromId(id: String): String {
-        return cachedRocketList.find {
-            it.id == id
-        }!!.name
     }
 
 }

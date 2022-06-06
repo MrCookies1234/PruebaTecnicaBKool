@@ -9,15 +9,15 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pruebatecnicabkool.adapter.LaunchAdapter
-import com.example.pruebatecnicabkool.databinding.FragmentMainBinding
+import com.example.pruebatecnicabkool.databinding.FragmentListBinding
 import com.example.pruebatecnicabkool.ui.viewmodel.MainFragmentViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 
 @AndroidEntryPoint
-class MainFragment : Fragment() {
+class ListFragment : Fragment() {
 
-    private var _binding : FragmentMainBinding? = null
+    private var _binding : FragmentListBinding? = null
     private val binding get() = _binding!!
 
     private val mainViewModel : MainFragmentViewModel by viewModels()
@@ -25,7 +25,7 @@ class MainFragment : Fragment() {
     private lateinit var launchAdapter: LaunchAdapter
 
     override fun onCreateView(inflater: LayoutInflater,container: ViewGroup?,savedInstanceState: Bundle?): View {
-        _binding = FragmentMainBinding.inflate(layoutInflater)
+        _binding = FragmentListBinding.inflate(layoutInflater)
         setUpRecyclerView()
         subscribeToObservables()
 
@@ -39,10 +39,11 @@ class MainFragment : Fragment() {
 
     private fun setUpRecyclerView(){
         binding.rcvLaunches.apply {
-            launchAdapter = LaunchAdapter()
+            launchAdapter = LaunchAdapter(binding)
             adapter = launchAdapter
             layoutManager = LinearLayoutManager(requireContext())
         }
+
     }
 
     private fun subscribeToObservables(){

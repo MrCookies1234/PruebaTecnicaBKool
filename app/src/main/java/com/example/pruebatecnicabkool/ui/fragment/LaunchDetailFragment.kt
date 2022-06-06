@@ -8,6 +8,7 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.pruebatecnicabkool.R
@@ -45,14 +46,12 @@ class LaunchDetailFragment : Fragment() {
                 var dateText = "${resources.getText(R.string.date_launched)} "
 
                 if(it.success!!){
-                    binding.imvLaunchDetailSuccess.visibility = View.VISIBLE
                     Glide.with(requireContext()).load(ContextCompat.getDrawable(requireContext(), R.drawable.ic_baseline_check_24)).into(binding.imvLaunchDetailSuccess)
-                    dateText += it.static_fire_date_unix
                 }else{
-                    binding.imvLaunchDetailSuccess.visibility = View.GONE
                     Glide.with(requireContext()).load(ContextCompat.getDrawable(requireContext(), R.drawable.ic_baseline_close_24)).into(binding.imvLaunchDetailSuccess)
-                    dateText += resources.getText(R.string.date_not_launched)
                 }
+
+                dateText += it.static_fire_date_unix
 
                 binding.txvLaunchDetailDate.text = dateText
 

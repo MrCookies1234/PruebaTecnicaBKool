@@ -3,21 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/mainFragment">
+    app:startDestination="@id/listFragment">
 
     <fragment
-        android:id="@+id/mainFragment"
-        android:name="com.example.pruebatecnicabkool.ui.fragment.MainFragment"
+        android:id="@+id/listFragment"
+        android:name="com.example.pruebatecnicabkool.ui.fragment.ListFragment"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main" >
+        tools:layout="@layout/fragment_list" >
         <action
-            android:id="@+id/action_mainFragment_to_launchDetailFragment"
+            android:id="@+id/action_listFragment_to_launchDetailFragment"
             app:destination="@id/launchDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/launchDetailFragment"
         android:name="com.example.pruebatecnicabkool.ui.fragment.LaunchDetailFragment"
-        android:label="LaunchDetailFragment" >
+        android:label="LaunchDetailFragment"
+        tools:layout="@layout/fragment_launch_detail">
         <argument
             android:name="launchId"
             app:argType="string"/>
@@ -25,12 +26,13 @@
             android:id="@+id/action_launchDetailFragment_to_youtubeFragment"
             app:destination="@id/youtubeFragment"/>
     </fragment>
+
     <fragment
         android:id="@+id/youtubeFragment"
         android:name="com.example.pruebatecnicabkool.ui.fragment.YoutubeFragment"
-        android:label="YoutubeFragment">
-    <argument
-        android:name="youtubeId"
-        app:argType="string"/>
+        android:label="YoutubeFragment" >
+        <argument
+            android:name="youtubeId"
+            app:argType="string" />
     </fragment>
 </navigation>
