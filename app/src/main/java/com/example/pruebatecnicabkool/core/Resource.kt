@@ -1,5 +1,10 @@
 package com.example.pruebatecnicabkool.core
 
+/**
+ * Generic wrapper class to enclose the api response with
+ * @param data The api response.
+ * @param message Error message to display when the call fails.
+ */
 sealed class Resource<T>(val data :  T? = null, val message: String? = null ){
     class Success<T>(data : T) : Resource<T>(data)
     class Error<T>(data: T? = null, message: String) : Resource<T>(data, message)

@@ -4,6 +4,7 @@ plugins {
     id 'kotlin-kapt'
     id 'dagger.hilt.android.plugin'
     id("androidx.navigation.safeargs.kotlin")
+    id 'org.jetbrains.dokka'
 }
 
     def localProperties = new Properties()
@@ -67,9 +68,9 @@ dependencies {
     // ...with Kotlin.
     kaptAndroidTest("com.google.dagger:hilt-android-compiler:2.38.1")
 
+    dokkaHtmlPlugin("org.jetbrains.dokka:kotlin-as-java-plugin:1.6.21")
 
     debugImplementation("androidx.fragment:fragment-testing:1.4.1")
-
 
     //Navigation
     implementation("androidx.navigation:navigation-fragment-ktx:2.4.2")

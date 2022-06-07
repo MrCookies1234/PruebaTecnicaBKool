@@ -14,6 +14,9 @@ import com.example.pruebatecnicabkool.ui.viewmodel.MainFragmentViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 
+/**
+ * Class that represents our list of launches
+ */
 @AndroidEntryPoint
 class ListFragment : Fragment() {
 

@@ -11,6 +11,9 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import dagger.hilt.android.AndroidEntryPoint
 
+/**
+ * Class responsible of setting up and playing the video.
+ */
 @AndroidEntryPoint
 class YoutubeFragment : Fragment() {
 

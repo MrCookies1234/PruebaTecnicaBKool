@@ -18,6 +18,9 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
+/**
+ * Class that represents the details of a selected launch
+ */
 @AndroidEntryPoint
 class LaunchDetailFragment : Fragment() {
 
